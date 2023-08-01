@@ -1,0 +1,21 @@
+.Container {
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    border-color: black;
+    margin-bottom: 15px;
+}
+
+.Content {
+    margin: 1px;
+}
+
+.Image {
+    width: 300px;
+    margin-bottom: 15px;
+}
+
+.Time {
+    font-size: 12px;
+    color: gray;
+    margin: 1px;
+}

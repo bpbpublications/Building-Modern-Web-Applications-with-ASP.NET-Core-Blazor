@@ -1,0 +1,22 @@
+@page "/shop-item/{id:int}"
+
+<h1>@_model.Name</h1>
+<p>@_model.Description</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Comment</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var comment in _model.ShopItemComments)
+        {
+            <tr>
+                <th scope="row">@comment.Id</th>
+                <td>@comment.Content</td>
+            </tr>
+        }
+    </tbody>
+</table>

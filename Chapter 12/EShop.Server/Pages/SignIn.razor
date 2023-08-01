@@ -1,0 +1,37 @@
+@page "/sign-in"
+
+<PageTitle>Sign In</PageTitle>
+
+
+@if (_authenticated)
+{
+    <h1>Hello, @_model.Name</h1>
+}
+else
+{
+    <h1>Sign In</h1>
+
+    <EditForm Model="@_model" OnValidSubmit="@HandleValidSubmit">
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                    <label>Name:</label>
+                </div>
+                <div class="col-4">
+                    <InputText @bind-Value="_model.Name" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-1">
+                    <label>Password:</label>
+                </div>
+                <div class="col-4">
+                    <InputPassword @bind-Value="_model.Password" />
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </EditForm>
+}

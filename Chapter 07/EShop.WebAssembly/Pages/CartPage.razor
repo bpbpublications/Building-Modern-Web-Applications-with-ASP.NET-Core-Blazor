@@ -1,0 +1,71 @@
+@page "/cart"
+@using EShop.WebAssembly.Components;
+
+<PageTitle>Shopping here!</PageTitle>
+
+<h2>Shopping here!</h2>
+
+<button class="btn btn-danger" @onclick="AddToCart">Add something to the cart</button>
+<CascadingValue Value="@_fontSize" Name="FontSize">
+  <CascadingValue Value="@_fontStyle" Name="FontStyle">
+    <div>
+      <h2>Cart</h2>
+      <CartComponent @ref="cartComponent" Cart="@_cart" OnCartItemRemoved="OnCartItemRemoved" OnMovingToWishList="OnMovingToWishList" />
+    </div>
+
+    <div>
+      <h2>Wish List</h2>
+      <WishListComponent @ref="wishListComponent" WishList="@_wishList" OnMovingToCart="OnMovingToCart" />
+    </div>
+  </CascadingValue>
+</CascadingValue>
+<button class="btn btn-warning" @onclick="Checkout">Checkout</button>
+
+@code {
+  private const string USER = "Brian";
+
+  private Models.Cart _cart = new Models.Cart(USER);
+
+  private Models.WishList _wishList = new Models.WishList(USER);
+
+  private string _fontSize = "font-size: 30px;";
+
+  private string _fontStyle = "font-style: italic;";
+
+  private CartComponent? cartComponent;
+
+  private WishListComponent? wishListComponent;
+
+  private void AddToCart()
+  {
+    _cart.Add(new Models.CartItem(new Models.ShopItem("T-shirt", "One of the tops", 5), 2));
+    _cart.Add(new Models.CartItem(new Models.ShopItem("Jacket", "The most popular", 17), 1));
+    _cart.Add(new Models.CartItem(new Models.ShopItem("Sun glasses", "On sale", 8), 3));
+  }
+
+  private void OnCartItemRemoved(Models.CartItem item)
+  {
+    _cart.Remove(item);
+  }
+
+  private void Checkout()
+  {
+    cartComponent.Checkout();
+  }
+
+  private void OnMovingToCart(Models.WishListItem item)
+  {
+    _wishList.Remove(item);
+
+    var cartItem = new Models.CartItem(item.Item, item.Count);
+    _cart.Add(cartItem);
+  }
+
+  private void OnMovingToWishList(Models.CartItem item)
+  {
+    _cart.Remove(item);
+
+    var wishListItem = new Models.WishListItem(item.Item, item.Count);
+    _wishList.Add(wishListItem);
+  }
+}

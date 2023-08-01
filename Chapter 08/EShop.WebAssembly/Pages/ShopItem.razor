@@ -1,0 +1,31 @@
+@page "/shop-item/{name?}"
+@using EShop.WebAssembly.Shared;
+
+<div class="ItemContainer">
+    <h1>@Item.Name</h1>
+    <h5>$ @Item.Price</h5>
+    <p>@Item.Description</p>
+</div>
+
+<div class="ItemDisplay">
+    <img src="@Item.ImageUrl" />
+    <div class="NewComment">
+        <input type="text" @bind="Content"/>
+        <InputFile OnChange="@UploadImageAsync" />
+        <button class="btn btn-primary NewCommentBtn" @onclick="AddComment">Leave a comment</button>
+    </div>
+</div>
+
+<button onclick="download()">Download</button>
+
+<div>
+    <button class="btn btn-primary" @onclick="ToCart">To cart</button>
+</div>
+
+<div class="Comments">
+    <h4>Comments</h4>
+    @foreach(var comment in Item.Comments)
+    {
+        <Comment CommentModel="@comment" />
+    }
+</div>

@@ -1,0 +1,26 @@
+.ItemContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ItemDisplay {
+    display: flex;
+    justify-content: space-around;
+}
+
+.NewComment {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin-top: 20px;
+    align-items: flex-start;
+}
+
+.NewCommentBtn {
+    margin-top: 10px;
+}
+
+.Comments{
+    margin-top: 20px;
+}

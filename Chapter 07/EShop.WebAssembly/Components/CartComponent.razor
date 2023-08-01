@@ -1,0 +1,15 @@
+@using Shared
+
+<div class="list-group">
+  @foreach (var item in Cart!.Items)
+  {
+    <GroupContainer Name=@item.Item.Name Description=@item.Item.Description>
+      <h2>child header</h2>
+      <input readonly @bind="item.UpdateTime" @bind:format="HH:mm:ss"></input>
+      <i class="p-2 bi bi-box-arrow-down" @onclick="()=>MoveToWishList(item)"></i>
+      <i class="p-2 bi bi-x-octagon-fill" @onclick="()=>Remove(item)"></i>
+    </GroupContainer>
+
+    @* <CartItemCountComponent @bind-Count="item.Count" @bind-Count:event="CountChanged" /> *@
+  }
+</div>

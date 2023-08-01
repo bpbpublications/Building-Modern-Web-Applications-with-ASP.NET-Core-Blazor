@@ -1,0 +1,20 @@
+@page "/lottery"
+
+<PageTitle>Lottery</PageTitle>
+
+<h1>Lottery</h1>
+
+<h4>🎉🎉🎉Welcome to the lottery park. Wish you the best luck!</h4>
+
+<div id="lotteryNo">
+    <input id="lotteryTxt" placeholder="please enter the lottery number you get from the seller."
+        @bind="_lotteryNo"></input>
+</div>
+
+<div id="drawBtn">
+    <button class="btn btn-danger" @onclick="DrawAsync">Draw</button>
+</div>
+
+<p id="lotteryResult" class="@_resultClasses">Result: @_lotteryResult</p>
+
+<audio @ref="_audio" src="https://s3.us-east-2.amazonaws.com/joystock-assets/music/epic.mp3"></audio>

@@ -1,0 +1,49 @@
+@page "/add-shop-item"
+
+<div class="ItemContainer">
+    <h1>Add Shop Item</h1>
+</div>
+
+<div>
+    <EditForm Model="@_shopItem" OnValidSubmit="@HandleValidSubmit">
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                    <label>Name:</label>
+                </div>
+                <div class="col-4">
+                    <InputText @bind-Value="_shopItem.Name" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-1">
+                    <label>Description:</label>
+                </div>
+                <div class="col-4">
+                    <InputText @bind-Value="_shopItem.Description" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-1">
+                    <label>Price:</label>
+                </div>
+                <div class="col-4">
+                    <InputNumber @bind-Value="_shopItem.Price" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-1">
+                    <label>Image Url:</label>
+                </div>
+                <div class="col-4">
+                    <InputText @bind-Value="_shopItem.ImageUrl" />
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </EditForm>
+</div>

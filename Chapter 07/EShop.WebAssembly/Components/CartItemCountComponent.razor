@@ -1,0 +1,47 @@
+<small>
+    <div class="d-flex flex-row mb-3">
+        <i class="p-2 bi bi-dash-square" style="@FontSize" @onclick="RemoveAsync"></i>
+        <input class="p-2" style="@FontSize font-style: italic;" type="text" value="@Count" @oninput="OnInput" />
+        <i class="p-2 bi bi-plus-square" style="@FontSize" @onclick="AddAsync"></i>
+        <p class="p-2" style="@FontSize">@Count</p>
+    </div>
+</small>
+
+@code{
+    [Parameter]
+    public int Count { get; set; }
+
+    [Parameter]
+    public EventCallback<int> CountChanged { get; set; }
+
+    [CascadingParameter(Name = "FontSize")]
+    public string FontSize { get; set;}
+
+    [CascadingParameter(Name = "FontStyle")]
+    public string FontStyle { get; set;}
+
+    public async Task AddAsync()
+    {
+        Count++;
+        await CountChanged.InvokeAsync(Count);
+    }
+
+    public async Task RemoveAsync()
+    {
+        Count--;
+        await CountChanged.InvokeAsync(Count);
+    }
+
+    public async Task OnInput(ChangeEventArgs args)
+    {
+        if (args.Value is null || string.IsNullOrWhiteSpace(args.Value.ToString()))
+        {
+            Count = 1;
+        }
+        else
+        {
+            Count = int.Parse(args.Value.ToString());
+        }
+        await CountChanged.InvokeAsync(Count);
+    }
+}

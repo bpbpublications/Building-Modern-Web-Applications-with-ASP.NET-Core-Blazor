@@ -1,0 +1,21 @@
+#lotteryNo {
+    margin: 10px;
+}
+
+#lotteryTxt {
+    width: 100%;
+}
+
+#drawBtn {
+    margin: 10px;
+}
+
+#lotteryResult{
+    color: red;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.hide{
+    visibility: hidden;
+}

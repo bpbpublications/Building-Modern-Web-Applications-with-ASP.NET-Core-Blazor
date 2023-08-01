@@ -1,0 +1,41 @@
+@using Models
+
+<h3>@Cart.User</h3>
+
+<div class="list-group">
+  @foreach (var item in Cart.Items)
+  {
+    <div class="list-group-item">
+      <div class="d-flex w-100 justify-content-between">
+        <p class="mb-1" style="@FontSize">@item.Item.Name</p>
+        <small>
+          <div>
+            <input readonly @bind="item.UpdateTime" @bind:format="HH:mm:ss"></input>
+            <i class="p-2 bi bi-x-octagon-fill" @onclick="()=>Remove(item)"></i>
+          </div>
+        </small>
+      </div>
+      <p class="mb-1">@item.Item.Description</p>
+      <CartItemCountComponent @bind-Count="item.Count" @bind-Count:event="CountChanged" />
+    </div>
+  }
+</div>
+
+@code {
+  [Parameter]
+  public Cart Cart { get; set; }
+
+  [CascadingParameter(Name = "FontSize")]
+  public string FontSize { get; set; }
+
+  [CascadingParameter(Name = "FontStyle")]
+  public string FontStyle { get; set; }
+
+  [Parameter]
+  public EventCallback<CartItem> OnCartItemRemoved { get; set; }
+
+  private void Remove(CartItem item)
+  {
+    OnCartItemRemoved.InvokeAsync(item);
+  }
+}

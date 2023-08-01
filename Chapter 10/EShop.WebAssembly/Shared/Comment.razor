@@ -1,0 +1,8 @@
+<div class="Container">
+    <p class="Content">@CommentModel.Content</p>
+    @if(!string.IsNullOrWhiteSpace(CommentModel.ImageUrl))
+    {
+        <img class="Image" src="@CommentModel.ImageUrl" />
+    }
+    <p class="Time">@CommentModel.CreatedTime.ToString("yyyy-mm-dd HH:MM:ss")</p>
+</div>

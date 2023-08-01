@@ -1,0 +1,32 @@
+@page "/cart"
+@using EShop.Components;
+
+<PageTitle>Cart</PageTitle>
+
+<h1>Cart</h1>
+
+<button class="btn btn-danger" @onclick="Buy">Buy</button>
+<CascadingValue Value="@_fontSize" Name = "FontSize">
+  <CascadingValue Value="@_fontStyle" Name = "FontStyle">
+    <CartComponent Cart="@_cart" OnCartItemRemoved="OnCartItemRemoved" />
+  </CascadingValue>
+</CascadingValue>
+
+@code {
+    private Models.Cart _cart = new Models.Cart("Brian");
+
+    private string _fontSize = "font-size: 30px;";
+
+    private string _fontStyle = "font-style: italic;";
+
+    private void Buy()
+    {
+        _cart.Add(new Models.CartItem(new Models.ShopItem("T-shirt", "One of the tops", 5), 2));
+        _cart.Add(new Models.CartItem(new Models.ShopItem("Jacket", "The most popular", 17), 1));
+    }
+
+    private void OnCartItemRemoved(Models.CartItem item)
+    {
+      _cart.Remove(item);
+    }
+}
