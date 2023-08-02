@@ -5,7 +5,7 @@ Learn Blazor from the ground up, with step-by-step instructions and code example
 This is the repository for [Building Modern Web Applications with ASP.NET Core Blazor
 ](https://bpbonline.com/products/building-modern-web-applications-with-asp-net-core-blazor?variant=42842619609288),published by BPB Publications. 
 
-<img src="9789355518798.jpg">
+<img src="97893555187598.jpg">
 
 ## About the Book
 Building Modern Web Applications with ASP.NET Core Blazor is the ultimate guide to developing high-quality web applications with Blazor and .NET Core. Written by an experienced developer, this book provides a comprehensive overview of Blazor's architecture, components, deployment options, and best practices for optimizing performance and scalability.
